@@ -21,8 +21,13 @@ This exercise was done with the minikube on Ubuntu.
     ```
     minikube start
     ```
+4. Installing nfs-server
+    ```
+    helm repo add stable https://charts.helm.sh/stable
+    helm install nfs-server stable/nfs-server-provisioner   --set persistence.enabled=true   --set persistence.size=1Gi   --set storageClass.name=nfs-storage
+    ```
 
-3. Apply configuration
+5. Apply configuration
     ```
     kubectl apply -f pvc.yaml
     kubectl apply -f nginx-deployment.yaml
@@ -30,7 +35,7 @@ This exercise was done with the minikube on Ubuntu.
     kubectl apply -f job.yaml
     ```
 
-4. Start service
+6. Start service
     ```bash
     minikube service nginx-service
     ```
